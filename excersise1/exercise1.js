@@ -23,7 +23,6 @@
 
         }
 
-
     Câu 7: Giá trị của array trong ví dụ sau: 4. ERROR
         const array = [1, 2, 3]
         const extension = [4, 5, 6]
@@ -53,7 +52,6 @@
         name = "Code Intensive"
         }
         sayHellO(obj)
-        console.log(obj)
 
     Câu 12: Giá trị của biểu arr trong ví dụ sau? 2. [2,2,6,4,10]
         let arr = [1, 2, 3, 4, 5]
@@ -76,7 +74,7 @@
 
         Giải thích:
         B1: total sẽ được trả ra 1 mảng với các item được nhặt từ arr thỏa mãn điều kiện chia hết cho 2. Ở đây total = [2,4]
-        B2:  Hàm reduce trả ra kết quả bằng tổng các item trong mảng total + 10
+        B2:  Hàm reduce trả ra kết quả bằng tổng các item trong mảng total + initial value(10)
 
 
 
@@ -90,18 +88,11 @@ const users = [
 	{name: "Kayne West", age: 16},
 	{ name: "Bob Ziroll", age: 100}
 ]
-const result = []
+let result = [];
 function insertHTML(users) {
-    for (i=0; i < users.length; i++ ) {     
-        result.push('<div><h1>' + Object.values(users[i])[0] + '</h1><h2>' + Object.values(users[i])[1] + '</h2></div>')
-    }
+    result = users.map(element => '<div><h1>' + element.name + '</h1><h2>' + element.age + '</h2></div>')
     return result;
 }
-
-
-
-
-
 
 // PROBLEM 2
 const students = [
@@ -113,50 +104,60 @@ const students = [
     { name: 'Dung', gender: 'other' },
 
 ];
-const resultNotFemale = [];
+let resultNotFemale = [];
 function filterFemale(students) {
-    for (i=0; i<students.length; i++) {
-        if(Object.values(students[i])[1] !== 'female') {
-            resultNotFemale.push(students[i])
-        }
-    }
+    resultNotFemale = students.filter( element => element.gender !== `female`)
     return resultNotFemale;
 }
 
+// PROBLEM 3
+let strs = ["eat","tea","tan","ate","nat","bat"]
+function group(strs) {
+    let result = [];
+    if(strs.length === 0){
+        return result;
+    }
+    for(let i=0; i<strs.length; i++){
+        let check = true;
+        for(let j=0; j<result.length; j++){
+            if(result[j].includes(strs[i])){
+                check = false;
+            }
+        }
+        if(check){
+            result.push(checkAnagrams(strs, i)); 
+        }
+    }
+    return result;
+}
+function checkAnagrams(aStr, i){
+    let anagrams = [];
+    anagrams.push(aStr[i]);
+    for(let j=0; j<aStr.length; j++){
+        if(i !== j){
+            if(isAnagram(aStr[i], aStr[j])){
+                anagrams.push(aStr[j]);
+            }
+        }
+    }
+    return anagrams;
+}
+function isAnagram(str1, str2) {
+    const string1 = str1.split("").sort().join().trim();
+    const string2 = str2.split("").sort().join().trim();
+    if(string1 === string2){
+        return true;
+    } 
+    return false; 
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// PROBLEM 4
-const nums = []
-const numberCounter = {}
+// PROBLEM 4 ---------------------------------------------------------------------------------------------------------
+const nums = [];
 function singleNumber(nums) {
-    for (let num of nums) {
-    if (numberCounter[num]) {
-        numberCounter[num]++
-        continue
-    }
-    numberCounter[num] = 1
-    }
-    for (let i = 0 ; i < Object.values(numberCounter).length; i++) {
-        if (Object.values(numberCounter)[i] == 1) {
-            return Number(Object.keys(numberCounter)[i])
+    for (i=0; i < nums.length; i++) {
+        if ( nums.lastIndexOf(nums[i]) == nums.indexOf(nums[i])) {
+            return nums[i];
         }
     }
 }
