@@ -3,14 +3,14 @@ import './App.css';
 import '../src/index.css';
 import {Menubar} from './component/Menubar';
 import { Introimg } from './component/Introimg';
-import SocialMedia from './component/Socialmedia';
+// import SocialMedia from './component/Socialmedia';
 
 function App() {
   return (
     <>
       <Menubar />
       <Introimg/>
-      <SocialMedia/>
+      {/* <SocialMedia/> */}
     </>
   );
 }
