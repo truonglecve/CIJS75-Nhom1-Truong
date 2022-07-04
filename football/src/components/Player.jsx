@@ -1,11 +1,10 @@
 const Player = (props) => {
   const { player, onDeletePlayer } = props;
   const { name, position, age, id, avatar } = player;
-
   return (
     <div className="player__wrapper">
       <div className="player__avatar">
-        <img src={avatar} alt="{name}picture" />
+        <img src={avatar} alt="Player" />
       </div>
       <h1>{name}</h1>
       <p>{position}</p>
@@ -16,18 +15,4 @@ const Player = (props) => {
     </div>
   );
 };
-
 export default Player;
-
-/*
-    Remove Player from UI
-
-    UI
-        - Create UI
-        - Remove Player component from Component Tree
-
-    Logic
-        - Find index player that we want to remove
-        - Create new state without 
-        - Set new state
-*/
